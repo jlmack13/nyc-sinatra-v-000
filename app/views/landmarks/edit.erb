@@ -1,0 +1,23 @@
+<h1>Edit a Landmark</h1>
+<form action="/landmarks/<%= @landmark.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <h2>Name</h2>
+  <label>Name:</label>
+  <input type="text" name="landmark[name]" id="name" value="<%= @landmark.name%>">
+  <br>
+  <br>
+  <h2>Year Completed: </h2>
+  <input type="text" name="landmark[year_completed]" id="year_completed" value="<%= @landmark.year_completed%>">
+  <h2>Figures:</h2>
+  <label>Choose Figure:</label>
+  <% @figures.each do |figure| %>
+    <input type="radio" name="landmark[figure_ids]" value="<%=figure.id%>" id="figure_<%=figure.id%>"><%='checked' if @landmark.figure == figure%><%=figure.name%></input>
+  <% end %>
+  <br>
+  <br>
+  <label>Or, Create a New Figure: </label>
+  <input type="text" name="figure[name]" id="new_figure">
+  <br>
+  <br>
+  <input type="submit" value="Edit Landmark">
+</form>
